@@ -142,7 +142,7 @@ function TypingSpeed() {
       </div>
       <p style={{textAlign:"center"}}>{renderTextWithErrors()}</p>
       <textarea
-        rows="4"
+        rows="6"
         cols="50"
         value={input}
         onChange={handleInputChange}
