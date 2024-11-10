@@ -1,0 +1,227 @@
+* {
+    box-sizing: border-box;
+    
+  }
+  body{
+    background: linear-gradient(135deg, #e0f7fa, #f7f9fc);
+
+  }
+  
+  .typing_containe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: lighten(#f7f9fc, 5%);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+
+    .instructions {
+        background-color: #eaf4fc;
+        padding: 10px;
+        border-radius: 5px;
+        color: #1a6ea0;
+        animation: fadeIn 1s ease-in-out;
+    
+        h3 {
+          font-size: 14px;
+          margin-top: 0;
+          margin-bottom: 5px;
+          color: #3498db;
+        }
+    
+        ul {
+            padding: 0;
+          margin: 0;
+          padding-left: 20px;
+          list-style: disc;
+          li{
+            margin-bottom: 2px;
+            font-size: 12px;
+          }
+        }
+      }
+    
+      .level-toggle {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    
+        .toggle-button {
+          padding: 8px 16px;
+          background-color: #ccd0d2;
+          color: rgb(0, 0, 0);
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          animation: popIn 0.6s ease;
+    
+          &.active {
+            color: #fff;
+            background-color: #1a6ea0;
+          }
+    
+        }
+      }
+  
+    @media (max-width: 768px) {
+      margin: 20px;
+      padding: 15px;
+    }
+  
+    h2 {
+      color: #2c3e50;
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      animation: popIn 0.6s ease;
+    }
+  
+    .sample-text {
+      font-size: 1.2em;
+      color: #34495e;
+      line-height: 1.6;
+      margin: 20px 0;
+      letter-spacing: 0.5px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+  
+      .correct-char {
+        color: #27ae60;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+  
+      .incorrect-char {
+        color: #e74c3c;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+    }
+  
+    textarea {
+      width: 100%;
+      height: 100px;
+      font-size: 1.1em;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #3498db;
+      outline: none;
+      resize: none;
+      transition: border-color 0.3s ease;
+      margin-top: 10px;
+  
+      &:focus {
+        border-color: #2ecc71;
+        background-color: #f0fcf8;
+      }
+    }
+  
+    .result {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 300px;
+      margin-top: 20px;
+      text-align: center;
+      p{
+        margin: 5px;
+      }
+  
+      .green {
+        font-weight: 700;
+        color: #27ae60;
+      }
+  
+      .red {
+        font-weight: 700;
+        color: #e74c3c;
+      }
+    }
+  }
+  
+  .results {
+    margin-top: 20px;
+    background-color: lighten(#f7f9fc, 5%);
+    padding: 15px;
+    border-radius: 10px;
+    animation: popIn 0.6s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  button {
+    padding: 8px 15px;
+    margin-top: 20px;
+    font-size: 1em;
+    background-color: #1a6ea0;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  
+    &:hover {
+      background-color: darken(#3498db, 10%);
+      transform: translateY(-2px);
+    }
+  
+    &:active {
+      background-color: darken(#3498db, 15%);
+      transform: translateY(1px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .typing_containe {
+      max-width: 90%;
+      h2 {
+        font-size: 1.8em;
+      }
+    }
+  
+    textarea {
+      height: 80px;
+      font-size: 1em;
+    }
+  
+    button {
+      padding: 10px 20px;
+    }
+  }
+  
