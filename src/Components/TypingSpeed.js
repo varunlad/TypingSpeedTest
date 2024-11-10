@@ -117,7 +117,7 @@ function TypingSpeed() {
 
   return (
     <div className="typing_containe">
-      <h2>Take Your Typing Speed Test</h2>
+      <h2 className="typing_animation"> Take Your Typing Speed Test</h2>
       <div className="instructions">
         <h3>Typing Speed Test Instructions</h3>
         <ul>
