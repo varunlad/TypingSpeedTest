@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { wordList } from "../Shared/WordSet";
-import './typespeed.scss'
+import { difficultList, wordList } from "../Shared/WordSet";
+import "./typespeed.scss";
 
 function TypingSpeed() {
   const [sampleText, setSampleText] = useState("Loading...");
@@ -16,28 +16,23 @@ function TypingSpeed() {
   const [level, setLevel] = useState("easy");
   const [copyPasteAlert, setCopyPasteAlert] = useState(false);
 
-
   useEffect(() => {
     fetchRandomText();
   }, [level]); // Re-fetch text when level changes
 
-  const getRandomSentence = () => {
-    const randomWords = wordList.sort(() => 0.5 - Math.random()).slice(0, 15);
+  const getRandomSentence = (wordArr) => {
+    const randomWords = wordArr.sort(() => 0.5 - Math.random()).slice(0, 15);
     const sentence = randomWords.join(" ");
     return sentence.charAt(0).toUpperCase() + sentence.slice(1);
   };
 
   const fetchRandomText = async () => {
-    setSampleText("Loading...")
+    setSampleText("Loading...");
     try {
       if (level === "easy") {
-        setSampleText(getRandomSentence());
+        setSampleText(getRandomSentence(wordList));
       } else {
-        const response = await axios.get(
-          "https://baconipsum.com/api/?type=all-meat&sentences=1"
-        );
-        const shortenedText = response.data[0].split(" ").slice(0, 20).join(" ");
-        setSampleText(shortenedText.split(".")[0]);
+        setSampleText(getRandomSentence(difficultList));
       }
       setInput("");
       setStartTime(null);
@@ -91,7 +86,10 @@ function TypingSpeed() {
   const calculateAccuracy = () => {
     const smoothnessPenalty = pauseCount * 2;
     const backspacePenalty = backspaceCount;
-    const accuracyPercentage = Math.max(100 - (smoothnessPenalty + backspacePenalty), 0);
+    const accuracyPercentage = Math.max(
+      100 - (smoothnessPenalty + backspacePenalty),
+      0
+    );
     setAccuracy(accuracyPercentage.toFixed(2));
   };
 
@@ -121,7 +119,9 @@ function TypingSpeed() {
       <div className="instructions">
         <h3>Typing Speed Test Instructions</h3>
         <ul>
-          <li>Choose between Easy or Hard level for different text complexity.</li>
+          <li>
+            Choose between Easy or Hard level for different text complexity.
+          </li>
           <li>Type the provided text as quickly and accurately as possible.</li>
           <li>Your speed and accuracy will be calculated upon completion.</li>
         </ul>
@@ -140,7 +140,7 @@ function TypingSpeed() {
           Hard
         </button>
       </div>
-      <p style={{textAlign:"center"}}>{renderTextWithErrors()}</p>
+      <p style={{ textAlign: "center" }}>{renderTextWithErrors()}</p>
       <textarea
         rows="6"
         cols="50"
@@ -151,18 +151,68 @@ function TypingSpeed() {
         onPaste={handleCopyPaste}
         onCopy={handleCopyPaste}
       />
-       {copyPasteAlert && (
-        <p  style={{color:"red", fontSize:12}}>Copy and paste are disabled to ensure a fair test.</p>
+      {copyPasteAlert && (
+        <p style={{ color: "red", fontSize: 12 }}>
+          Copy and paste are disabled to ensure a fair test.
+        </p>
       )}
       {isFinished && (
         <div className="result">
           <h3>Results</h3>
-          <p>Typing Speed: <span className={calculateWPM() > 30 ? "green" : "red"}>{calculateWPM()} WPM</span></p>
-          <p>Accuracy: <span className={accuracy > 75 ? "green" : "red"}>{accuracy} %</span></p>
+          <p>
+            Typing Speed :{" "}
+            <span className={calculateWPM() > 40 ? "green" : "red"}>
+              {calculateWPM()} WPM
+            </span>
+          </p>
+          <p>
+            Accuracy :{" "}
+            <span className={accuracy > 75 ? "green" : "red"}>
+              {accuracy} %
+            </span>
+          </p>
           <p>Time Taken: {((endTime - startTime) / 1000).toFixed(2)} seconds</p>
+          {calculateWPM() > 40 ? <p className="green"> Keyboard warrior in the making! The competition has no chance! Excellent Speed ! </p> : <p className="yellow"> You're getting there! Just remember, slow and steady wins the race! 🐢</p>}
           <button onClick={fetchRandomText}>Try Again</button>
         </div>
       )}
+      <div className="info-section">
+        <h3> Know how typing speed and accuracy are calculated ?</h3>
+        <p>
+          <strong>Typing Speed (WPM):</strong> This is the number of words typed
+          per minute, calculated by dividing the total number of words by the
+          time taken in minutes. Generally, a typing speed of 40-60 WPM is
+          considered good for most professions, while data entry and
+          transcription roles may require 60+ WPM.
+        </p>
+        <p>
+          <strong>Accuracy:</strong> Accuracy is calculated based on typing
+          smoothness (pauses) and errors. Each backspace used and pause over 1
+          second reduces the overall accuracy. A 90%+ accuracy rate is ideal for
+          professional work, though 80-90% is adequate for most tasks.
+        </p>
+        <p>
+          <strong>Terms Used:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Backspace Count:</strong> Tracks the number of corrections
+            made using backspace, affecting the accuracy.
+          </li>
+          <li>
+            <strong>Pause Count:</strong> Measures the number of times a pause
+            longer than 1 second occurs, indicating potential hesitations.
+          </li>
+          <li>
+            <strong>Word Count:</strong> Counts the total words in the sample
+            text, used to determine WPM.
+          </li>
+        </ul>
+        <p>
+          Improve your speed by practicing frequently and focusing on reducing
+          backspaces and pauses for higher accuracy!
+        </p>
+      </div>
     </div>
   );
 }

@@ -31,6 +31,37 @@ body {
     width: fit-content;
     animation: typing 3s steps(30, end) 1; // Run typing animation once
   }
+  .info-section {
+    background-color: #eaf4fd; // Light blue background
+    padding: 15px;
+    border-radius: 8px;
+    color: #0056b3; // Dark blue text color
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 20px;
+
+    h3 {
+      font-weight: bold;
+      color: #0056b3; // Dark blue text color for header
+      margin-bottom: 8px;
+      margin-top: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: o;
+      padding-left: 20px;
+      list-style-type: disc;
+
+      li {
+        margin-bottom: 8px;
+      }
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+  }
 
   .instructions {
     background-color: #eaf4fc;
@@ -43,7 +74,7 @@ body {
       font-size: 14px;
       margin-top: 0;
       margin-bottom: 5px;
-      color: #3498db;
+      color: #0056b3;
     }
 
     ul {
@@ -146,7 +177,7 @@ body {
     border-radius: 8px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     margin-top: 20px;
     text-align: center;
     p {
@@ -161,6 +192,10 @@ body {
     .red {
       font-weight: 700;
       color: #e74c3c;
+    }
+    .yellow{
+      font-weight: 700;
+      color: rgb(197, 202, 69);
     }
   }
 }
@@ -237,10 +272,10 @@ button {
     h2 {
       font-size: 1.8em;
     }
-    .typing_animation{
-        font-size: 1.8em;
-        white-space: break-spaces;
-        animation: none;
+    .typing_animation {
+      font-size: 1.8em;
+      white-space: break-spaces;
+      animation: none;
     }
   }
 
