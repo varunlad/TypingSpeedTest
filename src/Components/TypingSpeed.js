@@ -117,7 +117,7 @@ function TypingSpeed() {
     <div className="typing_containe">
       <h2 className="typing_animation"> Take Your Typing Speed Test</h2>
       <div className="instructions">
-        <h3>Typing Speed Test Instructions</h3>
+        <h3 >Typing Speed Test Instructions</h3>
         <ul>
           <li>
             Choose between Easy or Hard level for different text complexity.
@@ -140,7 +140,7 @@ function TypingSpeed() {
           Hard
         </button>
       </div>
-      <p style={{ textAlign: "center" }}>{renderTextWithErrors()}</p>
+      <p className="typing_text_question" style={{ textAlign: "center" }}>{renderTextWithErrors()}</p>
       <textarea
         rows="6"
         cols="50"
